@@ -46,8 +46,8 @@ input::placeholder {
     position: relative;
 }
 
-#item-input {
-  width: 200px;
+input {
+  width: 150px;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -95,11 +95,7 @@ label {
 }
 
 .listItems {
-    padding: 0.01px;
-    margin: 20px;
-    background-color: #f9f9f9;
-    border-radius: 4px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
     
 }
 
@@ -113,10 +109,62 @@ label {
     border :none !important;
     position: relative;
     margin: 10px;
-    margin-top: 20px;
+    
+    
+}
+.listItems li{
+
+
+    width: 280px; /* Adjust the width as needed */
+    word-wrap: break-word; /* Breaks long words to fit within the container */
+    white-space: normal; /* Allows text to wrap */
+    overflow-wrap: break-word; /* Adds support for breaking words in modern browsers */
+
+  
+  
 }
 
 .editingItem {  
-  position: absolute;
+    position: absolute;
     margin-left: 100px;
+   
+}
+
+
+
+textarea {
+  font-family: 'Caveat';
+  width: 100%;
+ 
+  
+  height: 100px;
+  padding: 10px;
+  
+  font-size: 20px;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus state for better interactivity */
+textarea:focus {
+  border-color: #0078d7; /* Blue border on focus */
+  box-shadow: 0 0 8px rgba(0, 120, 215, 0.5); /* Glow effect */
+  background-color: #fff; /* Slightly lighter background */
+}
+
+/* Placeholder style */
+textarea::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Disable resizing entirely if needed */
+textarea.no-resize {
+  resize: none;
 }

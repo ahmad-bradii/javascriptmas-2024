@@ -29,7 +29,7 @@ const shoppingList = document.getElementById('shopping-list')
 const listArr = [];
 const displayArr = [];
 
-const editItem = (value) =>(`<input type="text" id="editItem" value=${value}>`);
+const editItem = (value) =>(`<textarea>${value}</textarea>`);
 
 
 
@@ -70,7 +70,7 @@ function renderList() {
        
 
         listItem.id = `li-${index}`;
-        listItem.classList.add(`listItem${index}`);
+        listItem.classList.add('listItem');
         console.log(listItem.id);
         listItem.textContent = gift
         
@@ -80,7 +80,11 @@ function renderList() {
         
         const editButton = document.createElement('button')
         editButton.textContent = '✏️';
-        editButton.addEventListener('click', () => editText(index, listItem.id))
+        editButton.addEventListener('click', () => {
+            editText(index, listItem.id);
+            buttonContainer.style.display = 'none';
+            
+        })
         
         const buttonContainer = document.createElement('div');
         buttonContainer.classList.add('editingItem');
@@ -149,7 +153,7 @@ function editText(index,id){
 
 function updateText(index,edit){
 
-    let newItemText = edit.querySelector('input').value;
+    let newItemText = edit.querySelector('textarea').value;
     newItemText = newItemText.trim();
 
 
