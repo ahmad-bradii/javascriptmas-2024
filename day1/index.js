@@ -29,6 +29,10 @@ const shoppingList = document.getElementById('shopping-list')
 const listArr = [];
 const displayArr = [];
 
+const editItem = (value) =>(`<input type="text" id="editItem" value=${value}>`);
+
+
+
 // Function to check item is not duplicate
 function checkDuplicate() {
     
@@ -55,44 +59,42 @@ function checkDuplicate() {
 // Function to add an item to the shopping list
 function renderList() {
     shoppingList.innerHTML = ''
-    displayArr.forEach((gift,index) => {
+    displayArr.forEach((gift, index) => {
+
+        const listItems = document.createElement('div');
+        listItems.classList.add('listItems');
+        listItems.id = `listItems-${index}`;
+
+
         const listItem = document.createElement('li')
+       
+
+        listItem.id = `li-${index}`;
+        listItem.classList.add(`listItem${index}`);
+        console.log(listItem.id);
         listItem.textContent = gift
         
+        const deleteButton = document.createElement('button')
+        deleteButton.textContent = '❌'
+        deleteButton.addEventListener('click', () => deleteItem(index))
         
-        const deleteButton  = document.createElement('button');
+        const editButton = document.createElement('button')
+        editButton.textContent = '✏️';
+        editButton.addEventListener('click', () => editText(index, listItem.id))
         
+        const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('editingItem');
+        buttonContainer.style.display = 'inline-block';
+        buttonContainer.appendChild(editButton);
+        buttonContainer.appendChild(deleteButton);
+        listItems.append(buttonContainer);
+        listItems.append(listItem);
         
-        
-        deleteButton.textContent ='❌';
-        deleteButton.style.fontSize ="10px";
-        deleteButton.style.background="transparent";
-        deleteButton.style.position = "absolute";
-        deleteButton.style.right = "10px";
-        
-       
-       
-        deleteButton.addEventListener('click',() => deleteItem(index));
-        
-        const editbutton = document.createElement('button');
-        
-        
-        
-        
-        editbutton.textContent="✏️";
-        editbutton.style.background="transparent";
-        editbutton.style.fontSize ="10px"
-        
-        
-       
-        editbutton.addEventListener('click',() => editText(index));
-        
-        listItem.appendChild(deleteButton);
-        listItem.appendChild(editbutton);
-        
-        shoppingList.appendChild(listItem)
+
+    
+        shoppingList.appendChild(listItems);
     })
-    itemInput.value = ''; // Clear the input field
+    itemInput.value = '' ;// Clear the input field
 }
 
 // Add event listener to button
@@ -113,19 +115,52 @@ function deleteItem(index){
 }
 
 
-function editText(){
-    const newValue = prompt('Edit your item:', displayArr[index]);
+function editText(index,id){
+    let edit = document.getElementById(id);
+
+    const listItems = document.createElement('div');
+    listItems.classList.add('listItems');
     
-    let newItemText = newValue.trim();
     
+
+    const agreement = document.createElement('button');
+    agreement.textContent="✔️";
+    agreement.addEventListener('click', () => updateText(index,edit));
+
+
+    const disagreement = document.createElement('button');
+    disagreement.textContent="❌";
+    disagreement.addEventListener('click', () => renderList());
+
+
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('editingItem');
+    buttonContainer.style.display = 'inline-block';
+    buttonContainer.appendChild(agreement);
+    buttonContainer.appendChild(disagreement);
+
+
+    edit.innerHTML=editItem(displayArr[index]);
+    edit.appendChild(buttonContainer);
+    
+}
+
+
+function updateText(index,edit){
+
+    let newItemText = edit.querySelector('input').value;
+    newItemText = newItemText.trim();
+
+
     if(listArr.includes(newItemText.toLowerCase())){
         alert("You already Have add this item");
     }
     else{
-        listArr.push(newValue);
-        displayArr.push(newValue);
+        displayArr[index] = newItemText;
         
         renderList();
         
     }
+    
 }

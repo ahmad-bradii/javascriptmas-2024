@@ -20,7 +20,7 @@ body {
   border-radius: 15px; 
   font-family: 'Poppins';
   color: #054787;
-  width: 350px;
+  width: 450px;
 }
 
 h1 {
@@ -29,7 +29,7 @@ h1 {
   font-family: 'Caveat';
 }
 
-label, button, input::placeholder {
+label, add-item-button, input::placeholder {
     font-family: 'Poppins'
 }
 
@@ -53,7 +53,7 @@ input::placeholder {
   border-radius: 4px;
 }
 
-button {
+#add-item-button {
   padding: 10px 20px;
   border: none;
   background-color: #054787;
@@ -62,11 +62,11 @@ button {
   border-radius: 4px;
 }
 
-button:hover, button:focus {
+#add-item-button:hover, #add-item-button:focus {
   background-color: #218838;
 }
 
-button:active {
+#add-item-button:active {
     background-color: #FFC300;
     color: black;
 }
@@ -94,11 +94,29 @@ label {
   
 }
 
-li{
-    width: 260px; /* Adjust the width as needed */
-    word-wrap: break-word; /* Breaks long words to fit within the container */
-    white-space: normal; /* Allows text to wrap */
-    overflow-wrap: break-word; /* Adds support for breaking words in modern browsers */
+.listItems {
+    padding: 0.01px;
+    margin: 20px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     
 }
- 
+
+
+
+
+.editingItem button{
+
+    text-align: left;
+    background: transparent !important;
+    border :none !important;
+    position: relative;
+    margin: 10px;
+    margin-top: 20px;
+}
+
+.editingItem {  
+  position: absolute;
+    margin-left: 100px;
+}
